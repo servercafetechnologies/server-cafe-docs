@@ -1,0 +1,184 @@
+# **Section 11: Security Operations (SecOps) Procedures**
+
+This section establishes the security operations protocols that safeguard Server Café’s infrastructure, communications, and personnel. SecOps procedures are mandatory for all deployments and must be followed precisely to ensure resilience against cyber threats, insider risks, and physical breaches.
+
+---
+
+## **11.1 Purpose of SecOps Procedures**
+
+Security Operations ensure:
+
+* **Integrity** – All Server Café data and communications remain untampered.
+* **Confidentiality** – Sensitive information is protected from unauthorized access.
+* **Availability** – Systems remain resilient and operational under attack or failure.
+* **Accountability** – All security events are logged, auditable, and reviewable.
+
+---
+
+## **11.2 Security Roles and Responsibilities**
+
+* **SecOps Lead** – Overall responsibility for enforcing procedures, approving escalations, and coordinating incident response.
+* **Network Security Engineer** – Manages firewalls, VPNs, intrusion detection/prevention systems (IDS/IPS).
+* **System Administrator** – Applies patches, monitors servers, and manages access controls.
+* **Compliance Officer** – Ensures all security measures align with legal/regulatory requirements.
+* **HITL Supervisors** – Monitor AI reasoning for adversarial prompts or suspicious outputs.
+
+---
+
+## **11.3 Network Security Controls**
+
+### Firewalls
+
+* All nodes must be protected by perimeter firewalls (Cisco ASA or equivalent).
+* Default policy: **deny all inbound, allow outbound on whitelisted ports only**.
+* Ports Allowed:
+
+  * `443` (HTTPS)
+  * `22` (SSH – restricted to SecOps VPN)
+  * `1194` (OpenVPN)
+
+### VPN Access
+
+* All remote administrative access requires VPN with:
+
+  * AES-256 encryption
+  * MFA (hardware token or biometric)
+  * Session timeout: 15 minutes idle
+
+### IDS/IPS
+
+* Snort or Suricata IDS deployed at all ingress/egress points.
+* Daily signature updates required.
+* Alerts routed to `/var/log/secops/ids.log` and SIEM aggregator.
+
+---
+
+## **11.4 Authentication and Access Management**
+
+* **Identity Provider**: Keycloak or Azure AD with SAML integration.
+* **MFA Enforcement**: Required for all users.
+* **Role-Based Access Control (RBAC)**:
+
+  * Operators: Limited to monitoring dashboards.
+  * Engineers: Access to system configs.
+  * SecOps: Full root/admin privileges.
+* **Password Policy**:
+
+  * Minimum length: 16 characters
+  * Must include upper/lowercase, numbers, symbols
+  * Rotation every 90 days
+* **Key Rotation**:
+
+  * API keys rotated every 30 days
+  * SSH keys rotated every 90 days
+
+---
+
+## **11.5 Logging and Monitoring**
+
+* **Log Aggregation**: All logs centralized in an ELK (Elasticsearch-Logstash-Kibana) stack.
+* **Retention**: 12 months minimum, WORM storage for compliance.
+* **Mandatory Log Sources**:
+
+  * Firewall logs
+  * IDS/IPS alerts
+  * Authentication logs (`/var/log/auth.log`)
+  * AI reasoning logs (YAML-stamped)
+  * System event logs (`journalctl`)
+* **Alerting Rules**:
+
+  * Multiple failed logins → trigger alert
+  * Anomalous traffic patterns → trigger alert
+  * Unauthorized config change → immediate lockout
+
+---
+
+## **11.6 Incident Response Procedures**
+
+### Step 1: Detection
+
+* Event detected via IDS/IPS, log monitoring, or staff report.
+
+### Step 2: Containment
+
+* Isolate affected node(s) from network.
+* Redirect traffic through backup nodes.
+
+### Step 3: Eradication
+
+* Identify root cause (malware, exploit, misconfiguration).
+* Apply patches or remove malicious components.
+
+### Step 4: Recovery
+
+* Restore system from verified clean backup.
+* Validate operational integrity before reintegration.
+
+### Step 5: Lessons Learned
+
+* Incident review within 72 hours.
+* Update SecOps runbooks.
+* Generate YAML audit log:
+
+  ```yaml
+  incident_log:
+    id: INC-2025-044
+    detection_time: 2025-08-22 17:15 UTC
+    affected_node: SC-Node-US-12
+    severity: high
+    containment: node_isolated
+    eradication: patched_kernel
+    recovery: restored_from_backup
+    follow_up: patch_management_updated
+  ```
+
+---
+
+## **11.7 Physical Security Controls**
+
+* **Server Rooms**:
+
+  * Access controlled by keycard + biometric
+  * CCTV coverage with 90-day video retention
+  * 24/7 monitoring via NVR system
+* **Rack Security**:
+
+  * Lockable rack doors (APC NetShelter SX)
+  * Faraday cage lining for EMP shielding【25†source】
+* **Fire Protection**:
+
+  * Stat-X condensed aerosol suppression
+  * UL-listed 2-hour fire barrier walls【25†source】
+
+---
+
+## **11.8 Threat Intelligence and Updates**
+
+* Subscribe to:
+
+  * US-CERT bulletins
+  * ENISA advisories (for NATO stack)
+  * Vendor-specific advisories (Cisco, Dell, etc.)
+* Weekly review meeting to assess new threats.
+* Emergency patches applied within 24 hours.
+
+---
+
+## **11.9 Red Teaming and Penetration Testing**
+
+* **Frequency**: Twice per year minimum.
+* **Scope**:
+
+  * Network penetration
+  * Social engineering tests
+  * AI prompt-injection resilience tests
+* **Vendors**: Approved external red-team contractors only.
+* **Output**: Detailed report logged in `/srv/ops/redteam-reports/`.
+
+---
+
+## **11.10 Summary**
+
+SecOps procedures form the **defensive backbone of Server Café**. By combining technical controls, physical safeguards, and procedural rigor, these operations ensure that Server Café remains resilient, trustworthy, and compliant under constant threat.
+
+---
