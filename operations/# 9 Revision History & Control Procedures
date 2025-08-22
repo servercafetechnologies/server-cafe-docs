@@ -1,0 +1,153 @@
+# **Section 9: Revision History & Control Procedures**
+
+This section defines the mandatory processes for maintaining, revising, and distributing the Server Café Operations Manual. All modifications must follow the control procedures outlined here. Failure to comply will result in invalidation of the revision and potential operational or compliance risks.
+
+---
+
+## **9.1 Purpose of Revision Control**
+
+Revision control ensures:
+
+* **Traceability** – Every change is linked to its author, timestamp, and justification.
+* **Consistency** – Teams operate from the same canonical version of this manual.
+* **Accountability** – Unauthorized or undocumented edits are prevented.
+* **Compliance** – Regulatory bodies can audit the history of changes at any time.
+
+---
+
+## **9.2 Versioning Scheme**
+
+All revisions follow a strict three-part version number:
+
+```
+MAJOR.MINOR.PATCH
+```
+
+* **MAJOR** – Increased when significant changes are made (e.g., new sections, overhaul of protocols).
+* **MINOR** – Increased when subsections or clarifications are added (e.g., additional examples, glossary terms).
+* **PATCH** – Increased for small corrections (e.g., typos, formatting, single-sentence clarifications).
+
+**Example:** Version `8.2.5` = Section 8 completed (MAJOR), Glossary expanded (MINOR), five typo corrections (PATCH).
+
+---
+
+## **9.3 Change Authorization**
+
+Only authorized personnel may submit changes:
+
+* **Engineering Leads** – May request technical updates.
+* **Compliance Officers** – May request legal or regulatory adjustments.
+* **Operations Manager** – Final authority to approve changes.
+
+All requests must be submitted as a **Change Request (CR)** ticket in the internal issue-tracking system (`/srv/ops/cr-tracker`).
+
+---
+
+## **9.4 Change Request Workflow**
+
+### Step 1: Submission
+
+* Engineer or officer submits CR with the following fields:
+
+  * `CR_ID`: Unique identifier (auto-assigned)
+  * `Section`: Affected section(s)
+  * `Justification`: Reason for change
+  * `Proposed Text`: Draft wording
+  * `Impact Assessment`: Technical, compliance, or operational impacts
+
+### Step 2: Review
+
+* **Technical Review**: Engineering Lead ensures accuracy and feasibility.
+* **Compliance Review**: Officer ensures changes do not violate regulations.
+* **Operational Review**: Manager evaluates workflow or training implications.
+
+### Step 3: Approval
+
+* All three reviewers must sign off.
+* Digital signatures are appended to the CR.
+
+### Step 4: Implementation
+
+* Approved text is merged into the master manual.
+* A new version number is assigned.
+* A YAML-stamped log entry is generated:
+
+  ```yaml
+  revision:
+    version: 9.1.0
+    cr_id: CR-2025-041
+    author: Jane Doe, Compliance Officer
+    date: 2025-08-22 16:05 UTC
+    changes:
+      - Updated Appendix B definitions
+      - Clarified HITL review procedures
+  ```
+
+### Step 5: Distribution
+
+* Updated manual pushed to:
+
+  * **Internal Git Repository** (`git.servercafe.local/ops-manual`)
+  * **Secure PDF Distribution** (encrypted email to staff)
+  * **Audit Archive** (`/srv/ops/manual-archive`)
+
+---
+
+## **9.5 Revision Logbook Format**
+
+Each section of the manual maintains its own logbook. Format:
+
+```
+Version | Date       | Author         | Section(s) Changed   | Summary of Changes
+--------|------------|----------------|----------------------|-------------------
+9.0.0   | 2025-08-22 | Ops Manager    | Section 9            | Added Revision Control Procedures
+9.1.0   | 2025-08-25 | Compliance     | Appendix B           | Expanded Glossary definitions
+```
+
+---
+
+## **9.6 Access and Audit Controls**
+
+* **Access Restrictions**: Only the Operations Manager may merge final changes.
+* **Audit Frequency**: Quarterly audits ensure all changes are linked to valid CRs.
+* **Immutable Archives**: Each approved version stored in WORM (Write Once, Read Many) storage for minimum of 7 years.
+
+---
+
+## **9.7 Emergency Revision Procedure**
+
+If an urgent change is required (e.g., critical security fix):
+
+1. Engineer submits expedited CR with `Emergency=True`.
+2. At least two of the three reviewers (technical + compliance or operations) must sign off within 24 hours.
+3. Operations Manager issues interim revision with `-E` suffix (e.g., `9.0.1-E`).
+4. Interim revision must be ratified at the next scheduled audit.
+
+---
+
+## **9.8 Tools and Automation**
+
+* **Git Hooks**: Prevent unauthorized direct edits to the manual repository.
+* **CR Tracker Integration**: Automatically cross-references manual commits with CR IDs.
+* **PDF Generator**: Weekly cron job regenerates signed PDF copies with latest version.
+* **YAML Validator**: Confirms all revision logs adhere to proper schema before archival.
+
+---
+
+## **9.9 Staff Training**
+
+* All staff must complete annual training on revision control.
+* Training includes hands-on exercises:
+
+  * Submitting a CR
+  * Reviewing proposed changes
+  * Merging approved updates
+* Certification valid for 12 months. Expired certifications automatically revoke write access.
+
+---
+
+## **9.10 Summary**
+
+Revision control ensures Server Café’s Operations Manual remains a **living document**, precise, compliant, and auditable. No operational change is valid until documented here, logged via YAML, and distributed through official channels.
+
+---
