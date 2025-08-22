@@ -1,0 +1,101 @@
+# 2.1.1 Location Assessment
+
+The location assessment is the first and most critical step in deploying a Server Café node. Its purpose is to ensure that the site can physically, legally, and sustainably support the two-rack modular architecture and the solar-powered infrastructure it depends on. This process must be documented in a **formal Site Approval Report** before any hardware is purchased or deployed.
+
+---
+
+## 2.1.1.1 Solar Yield and Climate Analysis
+
+**Objective:** Verify that the site can sustain solar-first operations with sufficient sunlight and predictable climate conditions.
+
+**Procedure:**
+- Collect historical solar irradiance data for the location using tools like the **NREL PVWatts Calculator** (U.S.) or local meteorological databases.
+- Confirm a minimum yield of **1,600 kWh per installed kW per year**.
+- Obtain at least **10 years of climate records** (temperature highs/lows, humidity levels, extreme weather events).
+- Identify potential risks: prolonged overcast periods, seasonal snow cover, extreme heat that may overload cooling systems.
+- Calculate the required array size and battery storage based on expected node draw (8–75 kW depending on node type).
+
+**Deliverable:** A **Solar Capacity Factor Report** documenting annual generation estimates, risk factors, and infrastructure implications.
+
+---
+
+## 2.1.1.2 Regulatory and Zoning Compliance
+
+**Objective:** Ensure the site is legally authorized for computing, energy generation, and physical build-out.
+
+**Procedure:**
+- Review local zoning ordinances for **data center, commercial computing, or renewable energy installations**.
+- Confirm compliance with setback requirements, height restrictions for solar arrays, and local building codes.
+- Secure necessary permits for **electrical upgrades**, **solar interconnect**, and **business licensing**.
+- Identify and address community-specific restrictions (e.g., noise limits, nighttime lighting, hazardous materials storage).
+
+**Deliverable:** A **Zoning and Permitting Checklist** signed by the Operations Manager and the Compliance Officer.
+
+---
+
+## 2.1.1.3 Site Security and Access Control
+
+**Objective:** Evaluate the physical security of the location and its capacity to support Server Café’s zero-trust operations.
+
+**Procedure:**
+- Survey perimeter fencing, lighting, and controlled access points.
+- Confirm sufficient space for **fire-rated enclosures**, HVAC intake/exhaust clearance, and surveillance equipment.
+- Assess risks of theft, vandalism, or sabotage; high-risk locations may require reinforced enclosures or on-site security staff.
+- Plan for **multi-factor access control** at both site and rack level.
+
+**Deliverable:** A **Security Risk Assessment Report** with mitigation steps and design requirements.
+
+---
+
+## 2.1.1.4 Environmental and Community Impact
+
+**Objective:** Ensure deployment aligns with environmental sustainability and community integration goals.
+
+**Procedure:**
+- Model expected HVAC and generator noise; target < 50 dBA at property line.
+- Conduct shade analysis of solar exposure using drone or LIDAR survey.
+- Coordinate with utility for **net metering** or interconnection approvals.
+- Identify community concerns (visual impact, increased service traffic, land use changes).
+- Document mitigation strategies: landscaping, low-glare panels, community engagement sessions.
+
+**Deliverable:** A **Community Impact Brief** summarizing environmental modeling, risks, and mitigation strategies.
+
+---
+
+## 2.1.1.5 Cooling and Infrastructure Baseline
+
+**Objective:** Confirm the site can support continuous operation within ASHRAE thermal guidelines.
+
+**Procedure:**
+- Record historical summer highs; confirm HVAC sizing can maintain rack inlet ≤ 27°C (80°F).
+- Verify electrical service:
+  - **Residential Node:** 200A minimum.
+  - **Commercial Node:** 480V three-phase service.
+- Map available solar footprint:
+  - **Residential:** 300–400 sq. ft. roof or ground-mount.
+  - **Commercial:** Up to 20,000 sq. ft. roof or 0.5 acre ground-mount.
+- Confirm redundancy for power feeds, breaker panels, and access pathways.
+
+**Deliverable:** An **Infrastructure Readiness Report** confirming cooling, power, and space availability.
+
+---
+
+## 2.1.1.6 Documentation and Final Approval
+
+**Objective:** Consolidate findings and secure formal approval to proceed with deployment.
+
+**Procedure:**
+- Compile the following:
+  - Solar Capacity Factor Report.
+  - Zoning and Permitting Checklist.
+  - Security Risk Assessment Report.
+  - Community Impact Brief.
+  - Infrastructure Readiness Report.
+- Submit compiled **Site Approval Report** to:
+  - **Operations Lead** (technical signoff).
+  - **Compliance Officer** (regulatory signoff).
+  - **HITL Coordinator** (human workflow considerations).
+
+**Deliverable:** A formally approved **Site Approval Report**, required before procurement and installation (Section 2.1.2).
+
+---
