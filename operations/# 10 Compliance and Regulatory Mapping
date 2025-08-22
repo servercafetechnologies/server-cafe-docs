@@ -1,0 +1,170 @@
+# **Section 10: Compliance and Regulatory Mapping**
+
+This section defines how Server Café operations align with regulatory requirements across jurisdictions. It is a mandatory reference for compliance officers, auditors, and system operators. Every deployment—U.S., NATO, or Global—must adhere to the applicable mapping outlined here.
+
+---
+
+## **10.1 Purpose of Regulatory Mapping**
+
+Compliance in Server Café is not optional. Regulatory mapping ensures:
+
+* **Legal Operation** – Nodes operate within local and international law.
+* **Client Trust** – Demonstrates adherence to privacy and data security obligations.
+* **Operational Safety** – Prevents cross-border violations or export control breaches.
+* **Audit Readiness** – Provides clear traceability for regulators.
+
+---
+
+## **10.2 Regulatory Zones and Stack Separation**
+
+Server Café uses a **three-tier regulatory architecture**【25†source】:
+
+1. **U.S. Domestic Stack**
+
+   * **Vendors Allowed**: U.S.-based only (e.g., OpenAI, Anthropic).
+   * **Applicable Regulations**:
+
+     * ITAR (International Traffic in Arms Regulations)
+     * EAR (Export Administration Regulations)
+     * FedRAMP (Federal Risk and Authorization Management Program)
+     * CMMC (Cybersecurity Maturity Model Certification)
+     * HIPAA (Health Insurance Portability and Accountability Act)
+     * CCPA (California Consumer Privacy Act)
+
+2. **NATO/Allied Stack**
+
+   * **Vendors Allowed**: U.S., Canadian, European, and allied-country vendors (e.g., Mistral, Aleph Alpha).
+   * **Applicable Regulations**:
+
+     * GDPR (General Data Protection Regulation)
+     * PIPEDA (Canada’s Personal Information Protection and Electronic Documents Act)
+     * EU Dual-Use Regulation (Council Regulation (EC) No 428/2009)
+
+3. **Global Stack**
+
+   * **Vendors Allowed**: Broader set including non-aligned models (e.g., DeepSeek).
+   * **Applicable Regulations**:
+
+     * Local jurisdiction laws (e.g., India DPDP Act 2023)
+     * Transparency and consent-based disclosures
+     * Strict physical and logical separation from NATO/U.S. stacks
+
+---
+
+## **10.3 Mapping to Server Café Architecture**
+
+### Dawn (Input Validation)
+
+* **U.S. Stack**: Filters for ITAR/EAR-controlled data.
+* **NATO Stack**: Enforces GDPR-compliant consent and data minimization.
+* **Global Stack**: Flags data for explicit disclosure requirements.
+
+### Day (Mediation & Reasoning)
+
+* **U.S. Stack**: No outbound relay to non-U.S. vendors.
+* **NATO Stack**: Encrypted routing with jurisdiction tags in YAML payloads.
+* **Global Stack**: Limited mediation; requires signed user consent.
+
+### Dusk (Synthesis & Compliance)
+
+* **U.S. Stack**: Generates FedRAMP-compliant audit trails.
+* **NATO Stack**: Maintains GDPR Article 30 processing records.
+* **Global Stack**: Applies jurisdiction-specific disclaimers.
+
+---
+
+## **10.4 Data Residency and Sovereignty**
+
+* **Storage**: Each stack maintains **physically isolated storage**. Data never crosses between stacks.
+* **Retention**:
+
+  * U.S.: 1 year minimum (per CMMC)
+  * NATO: 6–12 months (per GDPR)
+  * Global: Configurable per-client contract
+* **Deletion**: Secure wipe (DoD 5220.22-M 3-pass) within 30 days of request.
+
+---
+
+## **10.5 Compliance Logging Requirements**
+
+* **Format**: YAML-stamped, immutable logs.
+* **Fields Required**:
+
+  * `request_id`
+  * `stack` (US/NATO/Global)
+  * `jurisdiction`
+  * `data_classification`
+  * `processing_steps`
+  * `reviewer_id` (HITL supervisor)
+  * `compliance_checks_passed`
+
+**Example:**
+
+```yaml
+compliance_log:
+  request_id: RQ-2025-1984
+  stack: NATO
+  jurisdiction: EU
+  data_classification: personal
+  processing_steps:
+    - dawn_validation: GDPR_consent_check
+    - day_mediation: AI_consensus
+    - dusk_synthesis: GDPR_audit_entry
+  reviewer_id: SUP-2231
+  compliance_checks_passed: true
+```
+
+---
+
+## **10.6 Cross-Border Data Handling**
+
+* **Prohibited**: Any automatic transfer of personal data between stacks.
+* **Allowed**: Cross-stack insights only via anonymized metadata or aggregated statistics.
+* **HITL Requirement**: Human supervisor must authorize and log all cross-border mediation attempts.
+
+---
+
+## **10.7 Certification and Audit Cycles**
+
+* **U.S. Stack**:
+
+  * Annual FedRAMP audit
+  * CMMC Level 2 certification every 3 years
+* **NATO Stack**:
+
+  * GDPR compliance audits annually
+  * ISO 27001 certification renewal every 3 years
+* **Global Stack**:
+
+  * Client-driven audits per jurisdiction
+  * Independent annual third-party compliance report
+
+---
+
+## **10.8 Enforcement and Escalation**
+
+* **Violation Response**:
+
+  * Immediate suspension of offending node
+  * Incident report within 24 hours
+  * Root-cause analysis within 7 days
+* **Escalation Path**:
+
+  * Compliance Officer → Operations Manager → External Regulator (if unresolved)
+
+---
+
+## **10.9 Staff Responsibilities**
+
+* **Compliance Officers**: Maintain mapping documentation and update with regulatory changes.
+* **Engineers**: Implement stack-specific controls in Dawn, Day, and Dusk layers.
+* **Operators**: Ensure every query is logged with jurisdictional metadata.
+* **Auditors**: Verify that logs match requirements in Sections 10.3–10.6.
+
+---
+
+## **10.10 Summary**
+
+Compliance and regulatory mapping transforms Server Café from a technical platform into a **legally defensible system**. By aligning each stack (U.S., NATO, Global) with jurisdiction-specific laws and embedding compliance directly into Dawn, Day, and Dusk, Server Café guarantees transparency, sovereignty, and trustworthiness.
+
+---
