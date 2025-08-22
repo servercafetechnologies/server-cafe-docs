@@ -1,0 +1,88 @@
+# 3. Day-to-Day Operations
+
+Day-to-Day Operations define the standard procedures for running a Server Café node once deployment has been validated and handed over. These operations combine automated orchestration with human-in-the-loop (HITL) oversight to ensure transparency, compliance, and resilience. This section establishes daily workflows, operator responsibilities, and system monitoring practices.
+
+---
+
+## 3.1 Objectives of Day-to-Day Operations
+
+1. **Maintain Continuous Service**  
+   Ensure 24/7 uptime with a target of 99.9% availability across all stacks.
+
+2. **Integrate Human Oversight**  
+   Guarantee that every orchestration cycle involving divergence, bias, or compliance triggers is reviewed and signed by a HITL operator.
+
+3. **Preserve Compliance and Auditability**  
+   Generate immutable, YAML-stamped audit logs for all system events and operator interventions.
+
+4. **Sustain Operational Efficiency**  
+   Optimize use of solar and battery resources while minimizing reliance on grid and generator fallback.
+
+5. **Enable Continuous Feedback**  
+   Provide operators with structured channels to propose improvements, report anomalies, and suggest workflow refinements.
+
+---
+
+## 3.2 Operational Layers
+
+Day-to-day operations are structured across three interdependent layers:
+
+1. **Automated Layer (System-Driven)**  
+   - Handles baseline orchestration: request ingestion, consensus routing, compliance checks.  
+   - Executes monitoring, logging, and automated failover protocols.  
+
+2. **Human Layer (HITL Operators)**  
+   - Resolves divergences between AI outputs.  
+   - Validates bias detection flags.  
+   - Approves or escalates compliance-sensitive outputs.  
+
+3. **Oversight Layer (Management & Compliance)**  
+   - Reviews daily operational logs.  
+   - Audits HITL performance metrics.  
+   - Ensures adherence to regulatory frameworks.  
+
+---
+
+## 3.3 Daily Rhythm of Operations
+
+1. **Morning System Check (0000–0400 UTC)**  
+   - Automated log rollovers and system updates.  
+   - Operator review of overnight alerts.  
+   - Confirmation of solar/battery performance from prior cycle.  
+
+2. **Shift-Based Monitoring (24/7 Coverage)**  
+   - HITL operators rotate in 8-hour shifts.  
+   - Continuous arbitration of flagged orchestration sessions.  
+   - Escalation to Tier 2 operators or Compliance Officer when thresholds exceeded.  
+
+3. **Evening Wrap-Up (2000–2200 UTC)**  
+   - Generate Daily Ops Summary Report.  
+   - Submit YAML-stamped activity logs to compliance archive.  
+   - Cross-check inventory (power, cooling, operator activity).  
+
+---
+
+## 3.4 Core Tools Used in Operations
+
+- **Operator Console Dashboard:** Real-time visualization of divergence cases, bias alerts, and arbitration tasks.  
+- **Prometheus + Grafana:** Metrics collection and dashboards for system health.  
+- **ELK Stack (Elasticsearch, Logstash, Kibana):** Centralized log management.  
+- **SIEM Platform:** Security event correlation (rack access, intrusion detection, system anomalies).  
+- **YAML Audit Trail Generator:** Ensures all events are stamped, hashed, and archived.  
+
+---
+
+## 3.5 Outputs of Day-to-Day Operations
+
+- **Daily Ops Summary Report**: Operator activity, arbitration metrics, incidents.  
+- **System Health Report**: Uptime, latency, throughput, power efficiency.  
+- **Compliance Archive Update**: Immutable YAML logs of all orchestration and operator actions.  
+- **Operator Feedback Log**: Documented observations and improvement proposals.  
+
+---
+
+## 3.6 Transition to Maintenance
+
+Day-to-day operations run continuously, with maintenance cycles (Section 4) layered in according to schedule. Any deviation from daily workflows—such as repeated SLA breaches or recurring operator escalations—must trigger a joint review with the Operations Lead, Compliance Officer, and HITL Coordinator.
+
+---
