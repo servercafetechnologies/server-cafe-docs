@@ -1,0 +1,109 @@
+# 2.1.2 Physical Security
+
+Physical security is a foundational requirement for all Server Café deployments. It protects sensitive infrastructure, preserves operational continuity, and enforces the zero-trust principles that govern both physical and digital access. Security controls must be designed, installed, and validated before racks or servers are powered on.
+
+---
+
+## 2.1.2.1 Perimeter Security
+
+**Objective:** Establish a secure boundary to prevent unauthorized access to the site.
+
+**Procedure:**
+- Install fencing at least 8 feet high with anti-climb features (angled tops or barbed extensions).
+- Implement controlled entry points with badge or biometric scanners.
+- Deploy CCTV coverage at all entry points and along the perimeter; ensure 30-day video retention minimum.
+- Install motion-activated lighting covering all fence lines and approaches.
+- Conduct quarterly penetration tests simulating intrusion attempts.
+
+**Deliverable:** A **Perimeter Security Validation Report** documenting camera coverage maps, access control points, and intrusion test results.
+
+---
+
+## 2.1.2.2 Facility Entry Control
+
+**Objective:** Ensure that only authorized staff and contractors can enter operational areas.
+
+**Procedure:**
+- Require dual authentication for entry (badge + biometric).
+- Maintain an access log with timestamps, personnel ID, and purpose of entry.
+- Prohibit piggybacking: install man-trap vestibules where possible.
+- Post visible signage indicating restricted access.
+- Ensure visitor management process includes ID verification, escort requirements, and temporary badge issuance.
+
+**Deliverable:** An **Entry Control Logbook** and access policy certified by the Operations Lead and Compliance Officer.
+
+---
+
+## 2.1.2.3 Rack-Level Security
+
+**Objective:** Secure servers and networking gear at the rack level to prevent tampering or theft.
+
+**Procedure:**
+- Use lockable 42U racks (e.g., APC NetShelter SX with keyed locks).
+- Install rack-level intrusion detection sensors tied into central monitoring.
+- Label and seal all unused rack units to prevent covert hardware insertion.
+- Require operator authentication (badge or PIN) before opening rack doors.
+- Implement logging: every rack access event recorded with operator ID and timestamp.
+
+**Deliverable:** A **Rack Security Checklist** with photos of rack seals, lock verification, and sensor test logs.
+
+---
+
+## 2.1.2.4 Environmental Security
+
+**Objective:** Protect racks and equipment against fire, flooding, and HVAC system tampering.
+
+**Procedure:**
+- Install fire suppression systems (e.g., Stat-X aerosol units) in each rack and verify discharge testing annually.
+- Place water sensors under raised floors or near HVAC condensate lines.
+- Route HVAC intake/exhaust away from public access points to prevent obstruction or sabotage.
+- Apply tamper seals to HVAC panels and electrical panels.
+
+**Deliverable:** An **Environmental Safety Report** documenting fire suppression certification, water sensor installation, and HVAC tamper seals.
+
+---
+
+## 2.1.2.5 Access Control Integration
+
+**Objective:** Link all physical security systems into a unified monitoring dashboard.
+
+**Procedure:**
+- Integrate badge readers, biometric scanners, rack sensors, and CCTV into the central Security Information and Event Management (SIEM) platform.
+- Configure automated alerts for:
+  - Unauthorized entry attempts.
+  - Rack door openings outside scheduled maintenance windows.
+  - Tamper sensor activation.
+- Ensure SIEM logs are stamped with YAML-format entries for auditability.
+
+**Deliverable:** An **Access Control Integration Report** confirming SIEM connectivity, sample log entries, and alert workflows.
+
+---
+
+## 2.1.2.6 Security Drills and Compliance
+
+**Objective:** Validate that staff are trained and security systems are functional.
+
+**Procedure:**
+- Conduct quarterly security drills simulating intrusion, fire, and power outage scenarios.
+- Require all staff and HITL operators to participate in annual security awareness training.
+- Audit access logs quarterly for anomalies or unreviewed entries.
+- Maintain compliance with SOC 2, ISO 27001, and NIST 800-53 physical security standards.
+
+**Deliverable:** A **Security Compliance Packet** containing:
+- Drill reports and attendance.
+- Training completion certificates.
+- Audit results and remediation actions.
+
+---
+
+## 2.1.2.7 Final Approval
+
+**Objective:** Certify that the physical security layer is operational before deployment continues.
+
+**Procedure:**
+- Consolidate deliverables: Perimeter Report, Entry Logbook, Rack Security Checklist, Environmental Safety Report, Integration Report, and Compliance Packet.
+- Submit packet to the **Chief Security Officer (CSO)** and **Compliance Officer** for joint signoff.
+
+**Deliverable:** A signed **Physical Security Approval Certificate**, required before proceeding to Section 2.1.3 (Cooling).
+
+---
