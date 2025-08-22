@@ -1,0 +1,125 @@
+# **Section 8: Appendices**
+
+This section provides detailed reference materials, technical specifications, definitions, and compliance guides that support daily operations of Server Café. All staff, engineers, and auditors must use these appendices when configuring, maintaining, or auditing the system. Appendices are not optional—they are the canonical source for message formats, terminology, and regulatory obligations.
+
+---
+
+## **Appendix A: Server Café Message Protocol Reference**
+
+### A.1 Purpose
+
+The Server Café Message Protocol ensures that all communications—internal and external—are **machine-readable, human-auditable, and vendor-neutral**. All engineers must enforce these rules without exception. Deviations compromise auditability and can invalidate compliance certifications.
+
+### A.2 Standard Message Types
+
+Two message categories exist:
+
+1. **External Vendor Requests**
+
+   * Used for communication with AI vendors (e.g., OpenAI, Anthropic, Google, xAI).
+   * Must always be stamped:
+
+     ```yaml
+     message_type: external_vendor_request
+     ```
+
+2. **Internal Orchestration Messages**
+
+   * Used only for communication between Dawn, Day, Dusk, or other internal nodes.
+   * Must always be stamped:
+
+     ```yaml
+     message_type: internal_orchestration_message
+     ```
+
+### A.3 Required Fields
+
+Each message must include the following:
+
+* `message_type` – One of the two categories above.
+* `from` – Must always identify the Server Café agent and operator role, e.g.:
+
+  ```
+  ChatGPT (via Justin Gwynn, acting as Dawn/Day/Dusk)
+  ```
+* `to` – Explicit vendor or internal recipient, no ambiguous names allowed. Options:
+
+  * Vendor name (e.g., “Claude”)
+  * “All Vendors”
+  * “Server Café Internal”
+* `timestamp` – ISO 8601 format: `YYYY-MM-DD HH:MM` in UTC.
+* `purpose` – One-line explanation of why the message was sent.
+* `payload` – Structured YAML fields containing the content. Must never be freeform text unless acknowledged as `payload.message`.
+
+### A.4 Example External Vendor Message
+
+```yaml
+message_type: external_vendor_request
+from: ChatGPT (via Justin Gwynn, acting as Dawn/Day/Dusk)
+to: Claude
+timestamp: 2025-08-22 15:35
+purpose: Confirm YAML schema for relay responses
+payload:
+  request:
+    action: confirm_response_schema
+    details:
+      expected_fields:
+        - confidence
+        - response
+        - metadata:
+            - token_usage
+            - latency
+```
+
+### A.5 Example Internal Orchestration Message
+
+```yaml
+message_type: internal_orchestration_message
+from: ChatGPT (via Justin Gwynn, acting as Dawn/Day/Dusk)
+to: Day
+timestamp: 2025-08-22 15:36
+purpose: Notify fallback routing
+payload:
+  details:
+    primary_vendor_confidence: 0.92
+    fallback_triggered: true
+    vendor_used: Claude
+```
+
+### A.6 Protocol Enforcement Tools
+
+* **YAML Linter**: Every outbound message must pass `yamllint` before transmission.
+* **Audit Script**: Daily cron job (`/etc/cron.d/servercafe_audit`) scans all logs for noncompliant messages.
+* **Training Checklists**: All new staff must demonstrate proficiency in writing both message types before system access is granted.
+
+---
+
+## **Appendix B: Glossary of Terms**
+
+This glossary standardizes Server Café terminology. Staff must use these exact terms in documentation and operations.
+
+* **Anzikurs Architecture** – The three-phase orchestration framework (Dawn, Day, Dusk).
+* **Dawn** – Input validation and cybersecurity layer. Ensures only secure, authentic data enters the system.
+* **Day** – Mediation and reasoning layer. Distributes queries to multiple AIs and reconciles results.
+* **Dusk** – Synthesis and compliance layer. Finalizes outputs with ethical and legal checks.
+* **Band-Lattice Convergence** – Mathematical process for deriving “truth as intersection” from multiple constraints.
+* **Closure Operator** – A function that guarantees extensiveness, idempotence, and monotonicity, ensuring stable convergence.
+* **HITL (Human-in-the-Loop)** – Mandatory oversight checkpoints where human supervisors arbitrate AI reasoning.
+* **Server Café Node** – A solar-powered, modular deployment unit (rackmount or appliance) that hosts the orchestration layers.
+* **Consensus Session** – A multi-AI process where external AIs iteratively review and refine responses until agreement is reached.
+* **YAML-Stamped Protocol** – The mandatory format for all communication, ensuring traceability and machine readability.
+
+---
+
+## **Appendix C: References & Further Reading**
+
+* **Server Café White Paper** – Foundational vision, architecture, and sustainability framework.
+* **Mathematical Framework for Self-Improving AI Systems** – Band-lattice proofs and convergence theory.
+* **Appendix B: Experimental Data** – Logs of multi-generational system evolution.
+* **Appendix C: Mathematical Proofs** – Formal proofs of convergence, stability, and robustness.
+* **HITL White Paper** – Strategic analysis of human-in-the-loop roles.
+* **HITL Training Curriculum** – Operator certification program for Server Café staff.
+* **Business Plan and Architecture Framework** – Operational model, revenue streams, and deployment strategies.
+* **Legal Documents** – California Secretary of State filings for Server Café Technologies LLC.
+
+---
