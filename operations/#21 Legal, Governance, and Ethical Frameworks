@@ -1,0 +1,151 @@
+# **Section 21: Legal, Governance, and Ethical Frameworks**
+
+This section outlines the legal, governance, and ethical structures that define how Server Café operates across jurisdictions. It establishes accountability mechanisms, ethical guidelines, and governance processes to ensure transparency, compliance, and alignment with human values.
+
+---
+
+## **21.1 Purpose of Governance Frameworks**
+
+* **Accountability** – Assign responsibility for decisions and actions.
+* **Compliance** – Ensure adherence to all relevant laws and regulations.
+* **Ethics** – Promote fairness, transparency, and user trust.
+* **Oversight** – Provide human-in-the-loop checks for all critical processes.
+
+---
+
+## **21.2 Legal Foundations**
+
+Server Café is bound by:
+
+* **Corporate Law**
+
+  * Registered as *Server Café Technologies LLC* in California【32†source】.
+  * Complies with California Secretary of State corporate reporting requirements【31†source】.
+
+* **Data Protection Laws**
+
+  * **US Stack**: HIPAA, CCPA, ITAR, EAR.
+  * **NATO Stack**: GDPR, PIPEDA, EU Dual-Use Regulation.
+  * **Global Stack**: Local jurisdictional privacy laws.
+
+* **Intellectual Property (IP)**
+
+  * Patent: *Iterative Self-Improving AI Band-Lattice Framework*【28†source】.
+  * Copyright: Software source, orchestration protocols, documentation.
+  * Trademarks: “Server Café” brand under USPTO registration.
+
+---
+
+## **21.3 Governance Structure**
+
+* **Board of Governance**
+
+  * Comprised of Ops Manager, Compliance Officer, SecOps Lead, Engineering Lead.
+  * Meets quarterly to review policy, compliance, and performance.
+
+* **Compliance Division**
+
+  * Ensures laws and contracts are upheld.
+  * Maintains jurisdictional mapping (see Section 10).
+
+* **HITL Oversight**
+
+  * Mandatory checkpoints in Day and Dusk layers.
+  * No automated system may bypass HITL review for compliance-sensitive decisions.
+
+---
+
+## **21.4 Ethical Guidelines**
+
+1. **Human-Centered AI**
+
+   * AI augments, never replaces, human decision-making.
+   * HITL supervisors have final authority.
+
+2. **Transparency**
+
+   * Every inter-agent dialogue must be YAML-stamped.
+   * Logs retained for minimum of 7 years.
+
+3. **Privacy by Design**
+
+   * Data minimization enforced in Dawn.
+   * Encryption by default (AES-256 at rest, TLS 1.3 in transit).
+
+4. **Fairness and Neutrality**
+
+   * No vendor manipulation through biased prompt engineering.
+   * Relay ethics enforced across all stacks.
+
+5. **Sustainability**
+
+   * Energy infrastructure powered by solar/wind wherever feasible.
+   * Hardware lifecycle stewardship enforced (reuse, recycle, minimize e-waste).
+
+---
+
+## **21.5 Governance Procedures**
+
+* **Policy Updates**
+
+  * Reviewed quarterly.
+  * Approved by Board of Governance.
+  * Published to `/srv/governance/policies/`.
+
+* **Escalation Path**
+
+  * Staff → Manager → Ops Manager → Governance Board.
+  * External regulators engaged only after internal escalation exhausted.
+
+* **Conflict of Interest**
+
+  * All staff must disclose conflicts.
+  * Example: Federal employees prohibited from certain contracts .
+
+---
+
+## **21.6 Ethical Audits**
+
+* Annual external review of:
+
+  * Bias in mediation layer outputs.
+  * HITL supervisor decision overrides.
+  * Vendor neutrality in orchestration.
+* Findings published in **Ethics Transparency Report**.
+
+---
+
+## **21.7 Global Governance Considerations**
+
+* **Decentralized Oversight**
+
+  * Local governance councils for nodes deployed outside the U.S.
+  * Councils empowered to review cultural, legal, and ethical issues.
+
+* **Multi-Jurisdiction Compliance**
+
+  * Each stack isolated to prevent unlawful data flow.
+  * Audit logs segmented by jurisdiction.
+
+* **Community Participation**
+
+  * Open governance model for local stakeholders.
+  * Feedback integrated into Board of Governance reviews.
+
+---
+
+## **21.8 Staff Responsibilities**
+
+* **Board Members**: Define policies, enforce oversight.
+* **Compliance Officers**: Monitor law, contracts, and obligations.
+* **Engineers**: Implement governance controls in code.
+* **Operators**: Follow ethical protocols at runtime.
+* **Auditors**: Verify that actions align with governance framework.
+
+---
+
+## **21.9 Summary**
+
+The legal, governance, and ethical frameworks ensure that **Server Café operates not only as a technical system, but as a responsible institution**. By embedding law, ethics, and oversight into its architecture, Server Café guarantees compliance, accountability, and trust across all environments.
+
+---
