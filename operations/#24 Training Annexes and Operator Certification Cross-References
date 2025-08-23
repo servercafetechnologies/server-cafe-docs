@@ -1,0 +1,120 @@
+# **Section 24: Training Annexes and Operator Certification Cross-References**
+
+This section provides detailed annexes and cross-references for training curricula, certification levels, and operator qualifications. It supplements Section 13 (Training and Certification Programs) with expanded references and practical tools.
+
+---
+
+## **24.1 Purpose of Training Annexes**
+
+* **Clarity** – Provide quick-reference tables for operator roles and certification levels.
+* **Consistency** – Ensure training aligns with operational requirements.
+* **Auditability** – Maintain transparent linkage between staff qualifications and system access.
+
+---
+
+## **24.2 Certification-to-Role Mapping**
+
+| Role               | Required Certification Level | Renewal Cycle | Notes                                    |
+| ------------------ | ---------------------------- | ------------- | ---------------------------------------- |
+| Operator           | Level 2 – Certified Operator | 12 months     | Must pass practical simulations.         |
+| Engineer           | Level 3 – Certified Engineer | 24 months     | Requires hands-on BC/DR and SecOps exam. |
+| SecOps Specialist  | Level 3 – Certified SecOps   | 24 months     | Includes red-team defense module.        |
+| Compliance Officer | Level 4 – Certified Manager  | 36 months     | Must complete ethics & legal training.   |
+| Ops Manager        | Level 4 – Certified Manager  | 36 months     | Oral defense exam before audit board.    |
+
+---
+
+## **24.3 Training Curriculum Annex**
+
+### Core Modules (All Staff)
+
+* Orientation
+* Security Awareness
+* Compliance Basics
+* YAML Message Protocols
+* Incident Reporting Procedures
+
+### Operator Track
+
+* Monitoring Dashboards
+* HITL Procedures
+* Incident Escalation
+
+### Engineer Track
+
+* Kubernetes Orchestration
+* Change Management
+* BC/DR Recovery Operations
+
+### SecOps Track
+
+* IDS/IPS Management
+* Forensic Analysis
+* Red Team Defense
+
+### Compliance Track
+
+* GDPR, HIPAA, CCPA Deep Dives
+* Regulator Communication Protocols
+* Audit Prep Procedures
+
+### Manager Track
+
+* Crisis Management Simulations
+* Financial Alignment (Section 23)
+* Governance Frameworks (Section 21)
+
+---
+
+## **24.4 Training Material Repositories**
+
+* **LMS Repository**: `/srv/training/lms/`
+* **Simulation Labs**: `/srv/training/labs/`
+* **Certification Exams**: `/srv/training/exams/`
+* **Continuing Education Credits**: `/srv/training/ce-logs/`
+
+All repositories must be version-controlled (Git) and YAML-stamped upon update.
+
+---
+
+## **24.5 Operator Certification Logs**
+
+* Stored in `/srv/training/cert-logs/`
+* YAML format example:
+
+  ```yaml
+  cert_log:
+    employee_id: EMP-5521
+    name: Alex Ramirez
+    role: Operator
+    certification_level: 2
+    status: active
+    issued_date: 2025-07-15
+    expiry_date: 2026-07-15
+    proctor: TRAIN-12
+  ```
+
+---
+
+## **24.6 Audit Cross-References**
+
+* **Quarterly Audit Requirement**: All staff certifications verified.
+* **Cross-Check**: HR system ↔ Training system ↔ Access logs.
+* **Non-Compliance**: Immediate access revocation until recertification.
+
+---
+
+## **24.7 Staff Responsibilities**
+
+* **Training Division**: Maintain curriculum and records.
+* **Compliance Officers**: Cross-check certification during audits.
+* **Managers**: Ensure direct reports remain certified.
+* **Employees**: Complete recertification before expiry.
+
+---
+
+## **24.8 Summary**
+
+This annex ensures that **training and certification directly map to operational authority**. By cross-referencing qualifications with access rights, Server Café guarantees that only trained, certified, and compliant personnel control the system.
+
+---
