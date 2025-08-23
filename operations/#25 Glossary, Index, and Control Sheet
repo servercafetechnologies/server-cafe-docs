@@ -1,0 +1,130 @@
+# **Section 25: Glossary, Index, and Control Sheet**
+
+This section provides a consolidated glossary, operational index, and the control sheet for the Server Café Operations Manual. It serves as the primary reference for auditors, operators, and trainers to quickly locate authoritative definitions, cross-references, and revision information.
+
+---
+
+## **25.1 Glossary of Key Terms**
+
+* **Anzikurs Architecture** – The three-phase orchestration framework: Dawn, Day, and Dusk.
+* **Band-Lattice Convergence** – Mathematical model used to derive truth as intersection from multiple constraints.
+* **BC/DR (Business Continuity and Disaster Recovery)** – Procedures ensuring resilience during failures and disasters.
+* **CAB (Change Advisory Board)** – Group that approves high-impact operational changes.
+* **Closure Operator** – Function ensuring extensiveness, idempotence, and monotonicity in band-lattice models.
+* **Compliance Log** – YAML-stamped log recording compliance checks and regulatory alignment.
+* **CR (Change Request)** – Formal request to modify systems, infrastructure, or documentation.
+* **Dawn** – Input validation and cybersecurity layer.
+* **Day** – Mediation and reasoning layer.
+* **Dusk** – Synthesis and compliance layer.
+* **HITL (Human-in-the-Loop)** – Required human oversight for critical AI orchestration decisions.
+* **Ops Manager** – Authority overseeing Server Café operations.
+* **Quine Architecture** – Self-reproducing system foundation enabling self-improvement.
+* **SecOps** – Security Operations procedures, including monitoring, defense, and incident response.
+* **Transparency Report** – Quarterly stakeholder report covering audits, incidents, and system performance.
+* **VM Hosting** – Revenue stream offering lightweight virtual machines to clients.
+
+---
+
+## **25.2 Index of Procedures by Section**
+
+**Section 8: Appendices**
+
+* YAML Message Protocols, Glossary, References.
+
+**Section 9: Revision History & Control**
+
+* Change request workflow, logbook format, emergency revisions.
+
+**Section 10: Compliance Mapping**
+
+* Jurisdictional separation (U.S., NATO, Global), audit trails.
+
+**Section 11: SecOps**
+
+* IDS/IPS, VPN, authentication, logging, incident response.
+
+**Section 12: BC/DR**
+
+* Recovery objectives, failover design, backup strategy, drills.
+
+**Section 13: Training**
+
+* Core and role-specific curricula, certification levels.
+
+**Section 14: Audit & Continuous Improvement**
+
+* Internal/external audits, CAPs, metrics dashboard.
+
+**Section 15: Vendor Integration**
+
+* Onboarding, monitoring, offboarding vendors.
+
+**Section 16: Change Management**
+
+* CR workflow, approval, deployment pipelines, rollback.
+
+**Section 17: Monitoring & Observability**
+
+* Prometheus, Grafana, log retention, SLOs, dashboards.
+
+**Section 18: Physical Infrastructure**
+
+* Rack standards, HVAC, fire protection, acoustic design.
+
+**Section 19: Incident Response**
+
+* Incident categories, lifecycle, crisis command structure.
+
+**Section 20: Decommissioning**
+
+* Data sanitization, hardware disposal, emergency retirement.
+
+**Section 21: Governance & Ethics**
+
+* Legal frameworks, HITL oversight, ethical audits.
+
+**Section 22: Community Engagement**
+
+* Councils, transparency reports, disclosure logs.
+
+**Section 23: Financial Alignment**
+
+* CapEx, OpEx, revenue streams, insurance, financial compliance.
+
+**Section 24: Training Annexes**
+
+* Role-to-certification mapping, exam logistics, audit cross-references.
+
+---
+
+## **25.3 Control Sheet**
+
+**Document Title:** Server Café Operations Manual
+**Entity:** Server Café Technologies LLC【32†source】
+**Maintainer:** Operations Manager
+**Approval Authority:** Governance Board
+
+### Revision History
+
+```
+Version | Date       | Author         | Section(s) Changed   | Summary
+--------|------------|----------------|----------------------|-----------------------------
+1.0.0   | 2025-08-10 | Ops Manager    | Sections 1–7         | Initial release
+2.0.0   | 2025-08-22 | Ops + AI Draft | Sections 8–21        | Full technical + compliance
+2.5.0   | 2025-08-24 | Ops + AI Draft | Sections 22–25       | Community, finance, annexes
+```
+
+### Control Notes
+
+* **Distribution**: Internal use only; external release requires Governance Board approval.
+* **Confidentiality**: Classified as *Controlled Operational Document*.
+* **Retention**: Permanent archival in `/srv/manuals/archive/`.
+* **Format Authority**: YAML-stamped logs are canonical; PDF is official distribution format.
+
+---
+
+## **25.4 Summary**
+
+The glossary, index, and control sheet consolidate the manual into a single authoritative reference. This ensures Server Café operations remain **transparent, traceable, and enforceable** across all environments.
+
+---
