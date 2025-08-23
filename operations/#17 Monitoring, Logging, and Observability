@@ -1,0 +1,137 @@
+# **Section 17: Monitoring, Logging, and Observability**
+
+This section defines how Server Café ensures full visibility into system health, performance, and security. Monitoring, logging, and observability form the foundation for proactive operations, incident detection, and audit compliance.
+
+---
+
+## **17.1 Purpose of Monitoring and Observability**
+
+* **Early Detection** – Identify anomalies before they impact clients.
+* **Transparency** – Provide real-time visibility into system operations.
+* **Compliance** – Maintain regulatory-grade audit logs.
+* **Continuous Improvement** – Use metrics and logs to drive optimizations.
+
+---
+
+## **17.2 Monitoring Stack**
+
+### Core Tools
+
+* **Prometheus** – Metrics collection (CPU, memory, network, custom application metrics).
+* **Grafana** – Dashboards for visualization.
+* **Elasticsearch** – Log indexing.
+* **Logstash** – Log ingestion pipeline.
+* **Kibana** – Log analysis and visualization.
+* **Wazuh/OSSEC** – Host-based intrusion detection.
+
+### Metrics Monitored
+
+* System: CPU %, memory %, disk usage, IOPS.
+* Network: Latency, throughput, packet loss.
+* Application: Query response times, AI vendor latency.
+* Power: Solar input, battery charge, grid usage.
+* Security: IDS/IPS alerts, failed logins, anomalous traffic.
+
+---
+
+## **17.3 Logging Requirements**
+
+### Log Categories
+
+1. **System Logs** – OS, kernel, service logs.
+2. **Application Logs** – Server Café orchestration events.
+3. **Security Logs** – Firewall, IDS, IAM events.
+4. **Compliance Logs** – YAML-stamped reasoning, HITL reviews, CR approvals.
+
+### Retention Policies
+
+* **Compliance Logs**: 7 years (immutable WORM storage).
+* **Security Logs**: 2 years.
+* **System/Application Logs**: 1 year.
+
+### Log Format
+
+* All compliance-related logs must be **YAML-stamped**.
+* Example:
+
+  ```yaml
+  reasoning_log:
+    request_id: RQ-2025-2012
+    dawn_validation: passed
+    day_agents: [Claude, GPT, Gemini]
+    dusk_review: compliance_checked
+    confidence: 0.93
+    reviewer: HITL-07
+    timestamp: 2025-08-23 18:30 UTC
+  ```
+
+---
+
+## **17.4 Observability Practices**
+
+* **Tracing**: OpenTelemetry used for distributed tracing of queries.
+* **Correlation IDs**: Each request tagged with unique ID for end-to-end tracking.
+* **Dashboards**: Custom Grafana dashboards by stack (US, NATO, Global).
+* **Service Level Objectives (SLOs)**:
+
+  * Availability: 99.9%
+  * Latency: <250ms median response
+  * Error Rate: <1%
+
+---
+
+## **17.5 Alerting and Escalation**
+
+* **Alert Manager** integrated with Prometheus.
+* Alerts classified:
+
+  * **Info** – Not urgent, logged.
+  * **Warning** – Requires action in 24 hours.
+  * **Critical** – Immediate on-call response.
+* **Escalation**:
+
+  1. Engineer on-call (PagerDuty notification).
+  2. SecOps Lead if unresolved within 30 minutes.
+  3. Ops Manager after 1 hour.
+
+---
+
+## **17.6 Dashboards and Reporting**
+
+* **Daily Reports**: Auto-generated, stored in `/srv/reports/daily/`.
+* **Weekly Summary**: Sent to Ops Manager, includes:
+
+  * Top 10 alerts by frequency
+  * System uptime metrics
+  * SLA adherence
+* **Quarterly Trends**: Presented at Review Board (ties into Section 14).
+
+---
+
+## **17.7 Automation and Self-Healing**
+
+* **Auto-Scaling**: Kubernetes horizontal pod autoscaler (HPA).
+* **Self-Healing Scripts**:
+
+  * Restart failed pods.
+  * Reroute traffic during network degradation.
+* **Predictive Maintenance**:
+
+  * ML models forecast hardware failures based on trends.
+
+---
+
+## **17.8 Staff Responsibilities**
+
+* **Engineers**: Maintain dashboards and metrics.
+* **SecOps**: Monitor security alerts.
+* **Compliance Officers**: Audit logs for adherence.
+* **Ops Manager**: Review weekly summaries, act on trends.
+
+---
+
+## **17.9 Summary**
+
+Monitoring, logging, and observability ensure that Server Café operates with **eyes wide open**. With real-time visibility, structured YAML compliance logs, and predictive alerting, Server Café achieves resilience, transparency, and trustworthiness in all environments.
+
+---
