@@ -1,0 +1,165 @@
+# **Section 19: Incident Response and Crisis Management**
+
+This section establishes the mandatory processes for detecting, responding to, and recovering from incidents that threaten Server Café operations. Incidents include cyberattacks, system failures, compliance breaches, and physical emergencies. Crisis management ensures coordinated response under high-pressure scenarios.
+
+---
+
+## **19.1 Purpose of Incident Response (IR) and Crisis Management**
+
+* **Containment** – Prevent escalation of incidents.
+* **Mitigation** – Minimize operational and reputational damage.
+* **Recovery** – Restore services quickly and safely.
+* **Transparency** – Provide stakeholders and regulators with documented evidence.
+* **Learning** – Incorporate lessons into future prevention.
+
+---
+
+## **19.2 Incident Categories**
+
+1. **Cybersecurity Incidents**
+
+   * Malware infections, ransomware, DDoS, data exfiltration.
+2. **System Failures**
+
+   * Hardware crashes, critical software bugs, storage corruption.
+3. **Compliance Violations**
+
+   * Data residency breaches, missed audit deadlines, regulatory conflicts.
+4. **Physical Events**
+
+   * Fire, flood, earthquake, unauthorized access attempts.
+5. **Human Factor Events**
+
+   * Insider threats, operator error, social engineering attacks.
+
+---
+
+## **19.3 Incident Response Lifecycle**
+
+### Step 1: Detection
+
+* Automated monitoring alerts (Prometheus, Wazuh, IDS/IPS).
+* Manual detection by operators or SecOps staff.
+
+### Step 2: Classification
+
+* **Severity 1 (Critical)** – Immediate risk to client data or uptime.
+* **Severity 2 (High)** – Disruption but partial services remain.
+* **Severity 3 (Medium)** – Limited impact, no critical data loss.
+* **Severity 4 (Low)** – Minor anomalies or false positives.
+
+### Step 3: Containment
+
+* Isolate affected systems.
+* Block malicious IPs/firewall rules.
+* Suspend compromised accounts.
+
+### Step 4: Eradication
+
+* Remove malware, patch vulnerabilities.
+* Apply hotfixes or restore clean configs.
+
+### Step 5: Recovery
+
+* Restore services from backups (see Section 12).
+* Validate system integrity with checksums and compliance logs.
+
+### Step 6: Post-Incident Review
+
+* Conduct review within 72 hours.
+* Generate YAML-stamped report:
+
+  ```yaml
+  incident_report:
+    id: INC-2025-052
+    category: cybersecurity
+    severity: 1
+    detection_time: 2025-08-23 20:15 UTC
+    containment: isolated_node
+    eradication: malware_removed
+    recovery: restored_from_backup
+    post_mortem_due: 2025-08-26
+    status: closed
+  ```
+
+---
+
+## **19.4 Crisis Management Protocol**
+
+When incidents escalate into crises (multi-system outages, regulatory breaches, or public exposure):
+
+### Crisis Command Structure
+
+* **Incident Commander (Ops Manager)** – Central authority.
+* **SecOps Lead** – Manages technical containment.
+* **Compliance Officer** – Handles regulator communication.
+* **Communications Officer** – Manages client and media relations.
+* **Support Teams** – Engineering, facilities, legal.
+
+### Crisis Response Steps
+
+1. **Activate Crisis Team** – Within 15 minutes of escalation.
+2. **Establish Situation Room** – Secure comms channel (Signal/Matrix).
+3. **Define Objectives** – Contain damage, restore services, preserve evidence.
+4. **Regulator Notification** – GDPR (72h), HIPAA (60 days), CCPA (45 days).
+5. **Client Communication** – Initial notice within 1 hour.
+6. **Daily Updates** – Until crisis resolution.
+7. **Debrief** – 7-day full post-mortem.
+
+---
+
+## **19.5 Communication Templates**
+
+### Internal Alert
+
+```
+Subject: [Severity 1] Critical Incident – Immediate Response Required
+Body: Incident INC-2025-052 detected. All SecOps staff report to war room.
+```
+
+### Client Notification
+
+```
+Subject: Service Incident Notification – Transparency Update
+Body: On 2025-08-23, Server Café detected and contained a cybersecurity event. No client data loss confirmed. Services are being restored. Next update in 4 hours.
+```
+
+### Regulator Notification
+
+```
+Subject: Mandatory Breach Report
+Body: Per GDPR Article 33, Server Café is reporting a potential data processing incident. Details attached. Follow-up report to be filed within 72 hours.
+```
+
+---
+
+## **19.6 Simulation and Drills**
+
+* **Quarterly Incident Response Drills**:
+
+  * Cyber incident (phishing/ransomware).
+  * Physical breach attempt.
+  * Insider misuse scenario.
+* **Annual Crisis Simulation**:
+
+  * Multi-stack outage.
+  * Regulator audit failure.
+* Reports logged in `/srv/ops/incident-drills/`.
+
+---
+
+## **19.7 Staff Responsibilities**
+
+* **Operators**: Report anomalies immediately.
+* **SecOps**: Lead containment and eradication.
+* **Engineers**: Execute restores and failovers.
+* **Compliance Officers**: Notify regulators and clients.
+* **Ops Manager**: Lead crisis team.
+
+---
+
+## **19.8 Summary**
+
+Incident response and crisis management ensure that **Server Café remains resilient under attack, failure, or disaster**. Through structured escalation, HITL oversight, and transparent communication, the system recovers quickly while maintaining client and regulator trust.
+
+---
