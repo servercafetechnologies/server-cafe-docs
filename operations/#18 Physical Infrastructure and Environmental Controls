@@ -1,0 +1,173 @@
+# **Section 18: Physical Infrastructure and Environmental Controls**
+
+This section details the physical and environmental requirements for Server Café nodes. Proper implementation ensures uptime, safety, and regulatory compliance for all deployments.
+
+---
+
+## **18.1 Purpose of Physical Infrastructure Standards**
+
+* **Reliability** – Maintain operational stability across varied environments.
+* **Safety** – Protect personnel and equipment from hazards.
+* **Security** – Prevent unauthorized physical access.
+* **Sustainability** – Align with Server Café’s solar-powered, green-energy mission.
+
+---
+
+## **18.2 Facility Requirements**
+
+* **Server Rooms**:
+
+  * Size: Minimum 150 sq ft per two racks.
+  * Walls: Fire-rated, UL 2-hour minimum.
+  * Flooring: Anti-static raised floor, 12” clearance for cabling.
+  * Ceiling: Minimum height 9 ft for HVAC clearance.
+
+* **Access Control**:
+
+  * Dual-factor entry (keycard + biometric).
+  * CCTV coverage with 90-day retention.
+  * Visitor logs mandatory.
+
+---
+
+## **18.3 Rack and Equipment Standards**
+
+* **Racks**:
+
+  * Standard: 42U APC NetShelter SX or equivalent【25†source】.
+  * Load Rating: ≥3,000 lbs.
+  * Lockable doors with acoustic dampening options.
+
+* **Power Distribution Units (PDUs)**:
+
+  * Smart PDUs with per-outlet monitoring.
+  * Redundant A/B feeds.
+
+* **Servers**:
+
+  * Edge-grade, ruggedized for high-heat environments.
+  * Hot-swappable drives and PSUs.
+
+---
+
+## **18.4 Power and Energy Management**
+
+* **Solar Arrays**:
+
+  * Minimum: 120% of average load.
+  * Example: Two-rack node requires \~50 kW solar system【25†source】.
+
+* **Battery Backup**:
+
+  * Minimum 6 hours runtime at full load.
+  * EG4 rack batteries or equivalent.
+
+* **Generator**:
+
+  * Optional for residential nodes.
+  * Recommended for commercial nodes (≥75 kW capacity).
+
+* **Energy Monitoring**:
+
+  * Real-time dashboards for solar, battery, grid draw.
+  * Alerts for low charge (<25%).
+
+---
+
+## **18.5 Cooling Infrastructure**
+
+* **HVAC**:
+
+  * Mini-split systems (Daikin/Mitsubishi, SEER ≥20).
+  * Capacity: \~2 tons per 8–10 kW of heat load【25†source】.
+  * Humidity: Maintain <50% RH.
+
+* **Airflow**:
+
+  * Hot/cold aisle containment.
+  * Blanking panels in unused rack spaces.
+
+* **Monitoring**:
+
+  * Sensors for temp/humidity every 10U in rack.
+  * Alert if >27°C sustained for 10 min.
+
+---
+
+## **18.6 Fire Protection**
+
+* **Suppression**:
+
+  * Stat-X condensed aerosol units (rack-mounted).
+  * Room-level FM-200 or equivalent.
+
+* **Fire Barriers**:
+
+  * Roxul Safe’n’Sound insulation (1200°F rating).
+  * UL 2-hour wall/fireproof container【25†source】.
+
+---
+
+## **18.7 Electromagnetic and Acoustic Controls**
+
+* **Faraday Cage**:
+
+  * Copper mesh (≥60 dB shielding effectiveness).
+  * Ground bonded to facility busbar.
+
+* **Acoustic Design**:
+
+  * Soundproof rack doors.
+  * Mass Loaded Vinyl panels for walls.
+  * Target noise reduction: 15–20 dB【25†source】.
+
+---
+
+## **18.8 Environmental Sustainability**
+
+* **Recycled Hardware**: Target 30–40% refurbished components.
+* **E-Waste**: Certified recycling partners only.
+* **Hybrid Energy**: Solar primary, wind/grid backup where feasible.
+* **Green Certification**: Aim for LEED Silver/Gold for commercial facilities.
+
+---
+
+## **18.9 Monitoring and Maintenance**
+
+* **Routine Inspections**:
+
+  * Weekly HVAC filter checks.
+  * Monthly UPS/battery health reports.
+  * Quarterly rack integrity checks.
+
+* **Maintenance Logs**:
+
+  * Stored in `/srv/ops/infra-logs/`.
+  * YAML format:
+
+    ```yaml
+    infra_log:
+      node: SC-Node-US-12
+      inspection_date: 2025-08-23
+      hvac_status: normal
+      battery_status: 92% capacity
+      rack_integrity: secure
+      inspector: TECH-22
+    ```
+
+---
+
+## **18.10 Staff Responsibilities**
+
+* **Facilities Manager**: Oversees HVAC, power, and fire systems.
+* **Engineers**: Perform inspections, log results.
+* **SecOps**: Verify physical security compliance.
+* **Compliance Officers**: Ensure environmental and safety certifications.
+
+---
+
+## **18.11 Summary**
+
+Server Café’s physical and environmental controls ensure that **infrastructure is safe, resilient, and sustainable**. By standardizing racks, power systems, cooling, and fire protection, nodes operate securely under diverse conditions while meeting green energy commitments.
+
+---
