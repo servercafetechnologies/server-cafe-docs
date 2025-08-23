@@ -1,0 +1,148 @@
+# **Section 16: Change Management and Deployment Procedures**
+
+This section governs how Server Café manages, tests, and deploys changes to infrastructure, software, and operational procedures. Strict adherence ensures stability, traceability, and compliance.
+
+---
+
+## **16.1 Purpose of Change Management**
+
+Change management ensures:
+
+* **Stability** – Prevents untested changes from disrupting production.
+* **Traceability** – Every change is logged and auditable.
+* **Compliance** – Deployment processes align with ISO 20000, ITIL, and NIST guidelines.
+* **Security** – Reduces risk of unauthorized or malicious modifications.
+
+---
+
+## **16.2 Change Classification**
+
+1. **Standard Change**
+
+   * Pre-approved, low risk (e.g., patching, certificate renewal).
+   * Requires CR submission but expedited approval.
+
+2. **Normal Change**
+
+   * Planned, medium/high impact (e.g., new feature deployment).
+   * Requires full review and Change Advisory Board (CAB) approval.
+
+3. **Emergency Change**
+
+   * Urgent, unplanned (e.g., security patch for zero-day).
+   * Requires immediate Ops Manager approval.
+   * Logged as emergency with post-review.
+
+---
+
+## **16.3 Change Request (CR) Workflow**
+
+### Step 1: Submission
+
+* Engineer or officer submits CR in system (`/srv/ops/cr-tracker`).
+* Fields required:
+
+  * `CR_ID`
+  * `Change_Type` (Standard, Normal, Emergency)
+  * `Description`
+  * `Impact_Assessment`
+  * `Rollback_Plan`
+
+### Step 2: Review
+
+* **Engineering Lead**: Technical feasibility.
+* **Compliance Officer**: Legal/regulatory risks.
+* **Ops Manager**: Operational risk and scheduling.
+
+### Step 3: Testing
+
+* Change tested in staging environment.
+* Automated CI/CD pipelines enforce unit tests, integration tests, and security scans.
+
+### Step 4: Approval
+
+* CAB approval required for Normal changes.
+* Emergency changes require Ops Manager sign-off.
+
+### Step 5: Deployment
+
+* Deployment automated via GitOps pipelines.
+* All deployments logged with YAML:
+
+  ```yaml
+  deployment_log:
+    cr_id: CR-2025-118
+    environment: production
+    deploy_time: 2025-08-23 16:45 UTC
+    deployed_by: ENG-11
+    status: success
+  ```
+
+### Step 6: Verification
+
+* Post-deployment monitoring in Grafana.
+* Ops team validates system health within 1 hour.
+
+### Step 7: Closure
+
+* CR marked as `Closed` in tracker.
+* Lessons learned appended if issues occurred.
+
+---
+
+## **16.4 Deployment Environments**
+
+1. **Development** – Individual engineer workspaces.
+2. **Staging/QA** – Mirror of production with anonymized test data.
+3. **Production** – Live Server Café environment.
+
+**Rule**: No direct deployments to production without staging validation.
+
+---
+
+## **16.5 Rollback Procedures**
+
+* Every CR must include rollback steps.
+* Rollback executed if:
+
+  * System stability compromised
+  * Security failure detected
+  * SLA breach triggered
+* Rollback YAML log:
+
+  ```yaml
+  rollback_log:
+    cr_id: CR-2025-118
+    rollback_time: 2025-08-23 17:05 UTC
+    reason: latency_spike
+    executed_by: OPS-02
+    status: complete
+  ```
+
+---
+
+## **16.6 Tools and Automation**
+
+* **GitOps**: ArgoCD/Flux for deployment automation.
+* **CI/CD**: GitHub Actions + Jenkins pipelines.
+* **Monitoring**: Prometheus + Grafana.
+* **Alerting**: PagerDuty for on-call escalation.
+* **Compliance Checkers**: Automated GDPR/HIPAA validation scripts.
+
+---
+
+## **16.7 Staff Responsibilities**
+
+* **Engineers**: Submit CRs, write rollback plans, test changes.
+* **Compliance Officers**: Validate regulatory alignment.
+* **Ops Manager**: Approve and schedule deployments.
+* **CAB**: Approve high-impact changes.
+* **SecOps**: Monitor for anomalies post-deployment.
+
+---
+
+## **16.8 Summary**
+
+Change management and deployment procedures guarantee that **no modification enters Server Café without review, testing, and audit logs**. This protects system stability, ensures compliance, and maintains trust across all stakeholders.
+
+---
