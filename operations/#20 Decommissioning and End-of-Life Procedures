@@ -1,0 +1,140 @@
+# **Section 20: Decommissioning and End-of-Life Procedures**
+
+This section defines the standards and processes for retiring Server Café hardware, software, and documentation. Decommissioning must ensure that data is secured, compliance obligations are met, and equipment is disposed of responsibly.
+
+---
+
+## **20.1 Purpose of Decommissioning Procedures**
+
+* **Data Security** – Guarantee that no sensitive data remains recoverable.
+* **Compliance** – Satisfy GDPR, HIPAA, CCPA, and other jurisdictional rules for data erasure.
+* **Safety** – Protect personnel during equipment dismantling and disposal.
+* **Sustainability** – Maximize recycling and reuse of hardware components.
+* **Auditability** – Provide verifiable logs of all end-of-life actions.
+
+---
+
+## **20.2 Triggers for Decommissioning**
+
+* Hardware reaching end of support lifecycle.
+* Software deprecated or unsupported.
+* Migration to new infrastructure.
+* Security risk identified in legacy systems.
+* Regulatory mandate to retire non-compliant equipment.
+
+---
+
+## **20.3 Hardware Decommissioning**
+
+### Step 1: Preparation
+
+* Identify hardware in `/srv/assets/register.yml`.
+* Open Change Request (CR) with justification.
+
+### Step 2: Data Sanitization
+
+* Apply NIST 800-88 Rev.1 standards:
+
+  * Cryptographic erase (AES-256 key destruction).
+  * DoD 5220.22-M 3-pass overwrite if crypto erase not available.
+  * Verification via hash checks.
+
+### Step 3: Physical Disposal
+
+* Certified e-waste vendor required.
+* Components separated:
+
+  * **Recyclable**: Metals, plastics.
+  * **Reusable**: Drives, RAM, CPUs (if wiped).
+  * **Hazardous**: Batteries, fire suppression canisters.
+
+### Step 4: Logging
+
+* YAML-stamped decommission log:
+
+  ```yaml
+  decommission_log:
+    asset_id: SRV-4412
+    type: Dell PowerEdge XR4520c
+    action: decommissioned
+    data_erasure: AES-256_crypto_erase
+    disposal_vendor: GreenTech Recycling
+    completion_time: 2025-08-24 09:15 UTC
+    approved_by: OPS-Manager-01
+  ```
+
+---
+
+## **20.4 Software Decommissioning**
+
+### Step 1: Notification
+
+* Notify teams of planned retirement.
+* Document alternative systems.
+
+### Step 2: Migration
+
+* Export data and configs to supported systems.
+* Validate integrity with checksum verification.
+
+### Step 3: Removal
+
+* Uninstall software.
+* Revoke API keys, OAuth tokens, and certificates.
+
+### Step 4: Logging
+
+* YAML entry created:
+
+  ```yaml
+  software_decommission:
+    name: Orchestration v1.2
+    replacement: Orchestration v2.0
+    migration_status: complete
+    removal_time: 2025-08-24 10:00 UTC
+    approver: ENG-Lead-05
+  ```
+
+---
+
+## **20.5 Documentation and Knowledge Base Retirement**
+
+* Obsolete documentation archived in `/srv/archive/manuals/`.
+* Clearly marked **DEPRECATED** with retirement date.
+* Retention period: 7 years for audit.
+
+---
+
+## **20.6 Environmental and Sustainability Standards**
+
+* Minimum 40% of decommissioned hardware recycled.
+* Vendors must provide Certificates of Destruction (CoD).
+* Batteries disposed of per EPA and EU Waste Electrical and Electronic Equipment (WEEE) directive.
+* Reports stored in `/srv/ops/sustainability/`.
+
+---
+
+## **20.7 Emergency Decommissioning**
+
+In cases of compromised hardware (e.g., tampering, physical breach):
+
+* Immediate isolation of equipment.
+* Secure wipe if possible; otherwise, physical destruction.
+* Incident log cross-referenced with decommission log.
+
+---
+
+## **20.8 Staff Responsibilities**
+
+* **Engineers**: Execute data erasure and migration.
+* **Facilities Staff**: Handle physical removal and disposal logistics.
+* **Compliance Officers**: Verify logs, retain Certificates of Destruction.
+* **Ops Manager**: Approve all decommission events.
+
+---
+
+## **20.9 Summary**
+
+Server Café’s decommissioning and end-of-life procedures guarantee **secure, compliant, and sustainable retirement of assets**. By enforcing strict sanitization, logging, and recycling standards, Server Café ensures trustworthiness and responsibility even in the final stage of infrastructure lifecycle.
+
+---
