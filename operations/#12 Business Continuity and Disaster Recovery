@@ -1,0 +1,190 @@
+# **Section 12: Business Continuity and Disaster Recovery (BC/DR)**
+
+This section establishes the Business Continuity and Disaster Recovery (BC/DR) procedures for Server Café. These procedures ensure critical operations continue with minimal disruption during disasters, outages, or catastrophic failures. Every operator, engineer, and compliance officer must know these steps by heart.
+
+---
+
+## **12.1 Purpose of BC/DR**
+
+BC/DR provides:
+
+* **Resilience** – Ensures Server Café continues to function during crises.
+* **Recovery** – Defines how to restore services quickly after disruption.
+* **Trust** – Demonstrates preparedness to clients and regulators.
+* **Compliance** – Aligns with ISO 22301, NIST SP 800-34, and GDPR Article 32 (availability and resilience).
+
+---
+
+## **12.2 Risk Scenarios Covered**
+
+BC/DR applies to the following events:
+
+* **Power Failures** (grid outages, solar inverter failures)
+* **Hardware Failures** (server, rack, or HVAC breakdowns)
+* **Cyber Incidents** (ransomware, DDoS, data breach)
+* **Natural Disasters** (earthquake, fire, flood)
+* **Human Error** (misconfiguration, accidental deletion)
+* **Regulatory Shutdowns** (government seizure, embargo)
+
+---
+
+## **12.3 Recovery Objectives**
+
+* **RTO (Recovery Time Objective):** Maximum downtime tolerated – **4 hours** per critical service.
+* **RPO (Recovery Point Objective):** Maximum data loss tolerated – **15 minutes** (via continuous replication).
+* **MTD (Maximum Tolerable Downtime):** **24 hours** before escalation to failover contracts.
+
+---
+
+## **12.4 Redundancy and Failover Design**
+
+### Power Redundancy
+
+* Solar arrays sized to handle 120% of average load.
+* Battery storage sized for **6 hours of runtime** minimum.
+* Automatic failover to:
+
+  * Grid (if available)
+  * Diesel generator (if grid unavailable, residential exemptions apply)
+
+### Network Redundancy
+
+* Dual ISPs per site.
+* Automatic BGP failover via pfSense firewalls.
+* VPN tunnels re-established within **60 seconds** of failover.
+
+### Compute Redundancy
+
+* Kubernetes clusters with **multi-node replication**.
+* Critical workloads run in **active-active mode** across racks.
+* Non-critical workloads restart within **15 minutes** via backup nodes.
+
+---
+
+## **12.5 Backup Strategy**
+
+* **Data Classification:**
+
+  * Tier 1: Compliance logs (immutable, 7-year retention)
+  * Tier 2: Client data (encrypted, 1-year retention)
+  * Tier 3: System configs (90-day retention)
+* **Backup Types:**
+
+  * Daily full backups (00:00 UTC)
+  * Hourly incremental backups
+  * Continuous database replication (PostgreSQL streaming)
+* **Backup Locations:**
+
+  * Primary: Local NAS in Faraday cage
+  * Secondary: Offsite data center (NATO/EU/US jurisdiction-matched)
+  * Tertiary: Cold storage (AWS Glacier or Backblaze B2)
+* **Encryption:** All backups encrypted with AES-256 + GPG key escrow.
+
+---
+
+## **12.6 Disaster Recovery Procedures**
+
+### Step 1: Incident Declaration
+
+* SecOps Lead or Operations Manager declares disaster.
+* Incident declared in YAML log:
+
+  ```yaml
+  disaster_event:
+    id: DR-2025-009
+    type: power_outage
+    location: SC-Node-NATO-03
+    declared_by: OpsManager-01
+    time: 2025-08-22 18:05 UTC
+    rto: 4h
+    rpo: 15m
+  ```
+
+### Step 2: Containment
+
+* Isolate affected systems.
+* Prevent replication of corrupted or compromised data.
+
+### Step 3: Failover Activation
+
+* Initiate failover:
+
+  * Switch power to generator/grid
+  * Reroute traffic to backup ISP
+  * Activate mirrored Kubernetes cluster
+
+### Step 4: Recovery
+
+* Restore from latest clean backup.
+* Validate:
+
+  * Hash checksums (SHA-256) match archive
+  * System configs aligned with CR tracker
+
+### Step 5: Communication
+
+* Notify:
+
+  * Internal staff via Ops Dashboard
+  * Clients within **1 hour** of incident
+  * Regulators within **72 hours** (GDPR, HIPAA)
+
+### Step 6: Post-Mortem
+
+* Root cause analysis within **7 days**.
+* Report stored in `/srv/ops/dr-reports/`.
+* Update runbooks and training modules.
+
+---
+
+## **12.7 Testing and Drills**
+
+* **Quarterly DR Drills**:
+
+  * Simulated power outage
+  * Simulated ransomware attack
+  * Simulated node destruction
+* **Annual Full Test**:
+
+  * Execute complete recovery cycle
+  * Validate RTO and RPO compliance
+* **Documentation**:
+
+  * Drill reports logged in `/srv/ops/dr-drills/`
+  * YAML-stamped:
+
+    ```yaml
+    drill_report:
+      id: DRILL-2025-Q3
+      type: ransomware
+      rto_achieved: 3h45m
+      rpo_achieved: 12m
+      outcome: pass
+    ```
+
+---
+
+## **12.8 Third-Party Dependencies**
+
+* Backup cloud vendors must sign **data processing agreements** (GDPR-compliant).
+* Power providers (solar/diesel/grid) must supply **uptime SLA of 99.5%**.
+* Network ISPs must support **BGP multi-homing**.
+* Red-team contractors validate DR effectiveness yearly.
+
+---
+
+## **12.9 Staff Responsibilities**
+
+* **Ops Manager** – Authorizes disaster declarations.
+* **SecOps Lead** – Leads technical response.
+* **Engineers** – Execute failover, restore systems.
+* **Compliance Officer** – Ensures notification deadlines are met.
+* **All Staff** – Participate in drills.
+
+---
+
+## **12.10 Summary**
+
+Server Café’s BC/DR framework guarantees that **no single failure, disaster, or attack can permanently disable operations**. With layered redundancy, tested recovery plans, and strict RTO/RPO targets, Server Café ensures resilience, transparency, and compliance even under catastrophic conditions.
+
+---
